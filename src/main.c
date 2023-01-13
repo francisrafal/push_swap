@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/13 18:54:23 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/13 19:47:56 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,26 @@ int	ft_issign(int c)
 
 void	fill_stack(t_stack *stack, int argc, char **argv)
 {
+	int		i;
+	char	*a;
+	char	*cur;
+
 	while (argc > 1)
 	{
-		if (!ft_isdigit(argv[argc - 1][0]) && !ft_issign(argv[argc - 1][0]))
+		cur = argv[argc - 1];
+		if (!ft_isdigit(cur[0]) && !ft_issign(cur[0]))
 			print_error_exit("Error\n");
-		push(stack, ft_atoi(argv[argc - 1]));
+		i = ft_atoi(cur);
+		a = ft_itoa(i);
+		if (cur[0] == '+')
+			cur = argv[argc - 1] + 1;
+		if (ft_strncmp(a, cur, ft_strlen(a)))
+			print_error_exit("Error\n");
+		push(stack, i);
 		argc--;
 	}
-// Implement error on arguments bigger than integer
 // Implement error on duplicates
+// Handle Input Strings with Quotes with ft_split (All in one quote or mixed numbers, quotes and non-quotes)
 }
 
 int	main(int argc, char **argv)
