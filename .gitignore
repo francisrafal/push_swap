@@ -1,3 +1,6 @@
 checker_linux
 push_swap
 *.swp
+obj
+*.o
+*.a
