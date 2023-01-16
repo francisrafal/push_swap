@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:33:11 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/16 17:19:46 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,39 @@ void	pb(t_data *data)
 	ft_printf("pb\n");
 }
 
+void	sa(t_data *data)
+{
+	t_node	*tmp;
+	
+	if (data->a->size <= 1)
+		return ;
+	tmp = data->a->head;
+	data->a->head = tmp->next;
+	tmp->next = data->a->head->next;
+	data->a->head->next = tmp;
+	ft_printf("sa\n");
+}
+
+void	sb(t_data *data)
+{
+	t_node	*tmp;
+	
+	if (data->b->size <= 1)
+		return ;
+	tmp = data->b->head;
+	data->b->head = tmp->next;
+	tmp->next = data->b->head->next;
+	data->b->head->next = tmp;
+	ft_printf("sb\n");
+}
+/*
+void	ss(t_data *data)
+{
+	sa(data);
+	sb(data);
+	ft_printf("ss\n");
+}
+*/
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -41,8 +74,14 @@ int	main(int argc, char **argv)
 	print_stacks(*(data->a), *(data->b));
 	pb(data);	
 	print_stacks(*(data->a), *(data->b));
-	pa(data);	
+	pb(data);	
 	print_stacks(*(data->a), *(data->b));
-	free_data(data);
+	sa(data);	
+	print_stacks(*(data->a), *(data->b));
+	sb(data);	
+	print_stacks(*(data->a), *(data->b));
+/*	ss(data);	
+	print_stacks(*(data->a), *(data->b));
+*/	free_data(data);
 	return (0);
 }
