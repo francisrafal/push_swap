@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 15:48:39 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:05:00 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,26 @@ void	fill_stack(t_data *data, int argc, char **argv)
 		free_str_arr(tmp);
 		argc--;
 	}
-// Implement error on duplicates
+}
+
+int	hasDuplicates(t_data *data)
+{
+	t_node	*cur;
+	t_node	*runner;
+
+	cur = data->a->head;
+	while (cur)
+	{
+		runner = cur->next;
+		while (runner)
+		{
+			if (cur->data == runner->data)
+				return (1);
+			runner = runner->next;
+		}
+		cur = cur->next;
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -210,6 +229,8 @@ int	main(int argc, char **argv)
 	data->a = init_stack(data);
 	data->b = init_stack(data);
 	fill_stack(data, argc, argv);
+	if (hasDuplicates(data))
+		print_error_exit("Error\n", data);
 	print_stacks(*(data->a), *(data->b));
 	free_data(data);
 	return (0);
