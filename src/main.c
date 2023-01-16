@@ -6,11 +6,23 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:26:56 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:33:11 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	pa(t_data *data)
+{
+	push(data->a, pop(data->b), data);
+	ft_printf("pa\n");
+}
+
+void	pb(t_data *data)
+{
+	push(data->b, pop(data->a), data);
+	ft_printf("pb\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -26,6 +38,10 @@ int	main(int argc, char **argv)
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
+	print_stacks(*(data->a), *(data->b));
+	pb(data);	
+	print_stacks(*(data->a), *(data->b));
+	pa(data);	
 	print_stacks(*(data->a), *(data->b));
 	free_data(data);
 	return (0);
