@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 15:35:05 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:27:31 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,20 @@ typedef struct		s_data
 	struct s_stack	*a;
 	struct s_stack	*b;
 }					t_data;
+
+void			free_null(void *ptr);
+int				pop(t_stack *stack);
+void			free_stack(t_stack *stack);
+void			free_data(t_data *data);
+void			print_error_exit(char *errmsg, t_data *data);
+t_stack			*push(t_stack *stack, int n, t_data *data);
+t_stack			*init_stack(t_data *data);
+void			print_stacks(t_stack a, t_stack b);
+int				ft_issign(int c);
+unsigned int	arrlen(char **tmp);
+long			getvalidint(char *cur);
+void			free_str_arr(char **str_arr);
+void			fill_stack(t_data *data, int argc, char **argv);
+int				hasDuplicates(t_data *data);
 
 #endif
