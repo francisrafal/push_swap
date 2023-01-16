@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:05:00 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/16 16:15:42 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,28 @@ t_stack	*init_stack(t_data *data)
 
 void	print_stacks(t_stack a, t_stack b)
 {
-	(void)b;
-
+	int		left;
+	int		right;
 	ft_printf("--------------------------------------------\n\n");
-	while (a.head)
+	while (a.head || b.head)
 	{
-		ft_printf("%d\n", a.head->data);
-		a.head = a.head->next;
+		if (a.head)
+			left = a.head->data;
+		if (b.head)
+			right = b.head->data;
+		if (a.head && b.head)	
+			ft_printf("%d\t\t%d\n", left, right);
+		else if (a.head)
+			ft_printf("%d\t\t\n", left);
+		else if (b.head)
+			ft_printf("\t\t%d\n", right);
+		if (a.head)
+			a.head = a.head->next;
+		if (b.head)
+			b.head = b.head->next;
 	}
-	ft_printf("_ _\n");
-	ft_printf("a b\n\n");
+	ft_printf("_\t\t_\n");
+	ft_printf("a\t\tb\n\n");
 }
 
 int	ft_issign(int c)
