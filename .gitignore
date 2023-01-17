@@ -7,3 +7,4 @@ obj
 
 *.log
 push_swap_tester
+*.nfs*

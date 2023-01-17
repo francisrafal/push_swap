@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 16:22:52 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 19:27:57 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 typedef struct		s_node
 {
 	int				data;
+	unsigned int	key;
+	int				key_data;
 	struct s_node	*next;
 }					t_node;
 
@@ -49,6 +51,8 @@ void			print_error_exit(char *errmsg, t_data *data);
 t_stack			*push(t_stack *stack, int n, t_data *data);
 t_stack			*init_stack(t_data *data);
 void			print_stacks(t_stack a, t_stack b);
+void			print_key_data(t_stack a, t_stack b);
+void			print_keys(t_stack a, t_stack b);
 int				ft_issign(int c);
 unsigned int	arrlen(char **tmp);
 long			getvalidint(char *cur);

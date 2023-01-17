@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 17:31:47 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 19:39:06 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,55 @@ void	sort(t_data *data)
 	}
 }
 
+void	fill_keys(t_data *data)
+{
+	t_node			*runner;
+	unsigned int	i;
+
+	i = 0;
+	runner = data->a->head;
+	while (runner)
+	{
+		runner->key = i;
+		runner->key_data = runner->data;
+		runner = runner->next;
+		i++;
+	}
+}
+
+int	swap_keys(t_node *a, t_node *b)
+{
+	unsigned int	tmp_key;
+	int				tmp_key_data;
+
+	tmp_key = a->key;
+	a->key = b->key;
+	b->key = tmp_key;
+	tmp_key_data = a->key_data;
+	a->key_data = b->key_data;
+	b->key_data = tmp_key_data;
+	return (1);
+}
+
+void	sort_keys(t_data *data)
+{
+	t_node	*runner;
+	int		swapped;
+
+	swapped = 1;
+	while (swapped)
+	{
+		runner = data->a->head;
+		swapped = 0;
+		while (runner->next)
+		{
+			if (runner->key_data > runner->next->key_data)
+				swapped = swap_keys(runner, runner->next);
+			runner = runner->next;
+		}
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -204,17 +253,26 @@ int	main(int argc, char **argv)
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
-	//print_stacks(*(data->a), *(data->b));
+	fill_keys(data);
+	print_keys(*(data->a), *(data->b));
+	sort_keys(data);
+	print_keys(*(data->a), *(data->b));
+	print_key_data(*(data->a), *(data->b));
 	sort(data);
-	//print_stacks(*(data->a), *(data->b));
+	print_keys(*(data->a), *(data->b));
+//	print_stacks(*(data->a), *(data->b));
+//	print_stacks(*(data->a), *(data->b));
+//	print_stacks(*(data->a), *(data->b));
 	free_data(data);
 	return (0);
 }
 
+// IMPORTANT: REPAIR push and pop to also return key and key_data
+
 // Check if already sorted
 // Sort small
 // Simplify numbers
-
+// Bei 2: max 1 move
 // Bei 3: max 3 moves
 // Bei 5: max 12 moves
 // Bei 100: max 1100 moves / besser < 700

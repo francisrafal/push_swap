@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:24:32 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:26:12 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 19:28:32 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,60 @@ void	print_stacks(t_stack a, t_stack b)
 			ft_printf("%d\t\t\n", left);
 		else if (b.head)
 			ft_printf("\t\t%d\n", right);
+		if (a.head)
+			a.head = a.head->next;
+		if (b.head)
+			b.head = b.head->next;
+	}
+	ft_printf("_\t\t_\n");
+	ft_printf("a\t\tb\n\n");
+}
+
+void	print_key_data(t_stack a, t_stack b)
+{
+	int	left;
+	int	right;
+
+	ft_printf("--------------------------------------------\n\n");
+	while (a.head || b.head)
+	{
+		if (a.head)
+			left = a.head->key_data;
+		if (b.head)
+			right = b.head->key_data;
+		if (a.head && b.head)	
+			ft_printf("%d\t\t%d\n", left, right);
+		else if (a.head)
+			ft_printf("%d\t\t\n", left);
+		else if (b.head)
+			ft_printf("\t\t%d\n", right);
+		if (a.head)
+			a.head = a.head->next;
+		if (b.head)
+			b.head = b.head->next;
+	}
+	ft_printf("_\t\t_\n");
+	ft_printf("a\t\tb\n\n");
+}
+
+
+void	print_keys(t_stack a, t_stack b)
+{
+	unsigned int	left;
+	unsigned int	right;
+	ft_printf("--------------------------------------------\n\n");
+	while (a.head || b.head)
+	{
+		if (a.head)
+			left = a.head->key;
+		if (b.head)
+			right = b.head->key;
+		if (a.head && b.head)	
+			ft_printf("%u\t\t%u\n", left, right);
+		else if (a.head)
+			ft_printf("%u\t\t\n", left);
+		else if (b.head)
+			ft_printf("\t\t%u\n", right);
 		if (a.head)
 			a.head = a.head->next;
 		if (b.head)
