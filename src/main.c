@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 17:19:46 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 14:03:50 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	sa(t_data *data)
 	data->a->head = tmp->next;
 	tmp->next = data->a->head->next;
 	data->a->head->next = tmp;
-	ft_printf("sa\n");
+	if (data->called_directly == CALLED_DIRECTLY)
+		ft_printf("%s\n", __func__);
 }
 
 void	sb(t_data *data)
@@ -47,16 +48,19 @@ void	sb(t_data *data)
 	data->b->head = tmp->next;
 	tmp->next = data->b->head->next;
 	data->b->head->next = tmp;
-	ft_printf("sb\n");
+	if (data->called_directly == CALLED_DIRECTLY)
+		ft_printf("%s\n", __func__);
 }
-/*
+
 void	ss(t_data *data)
 {
+	data->called_directly = CALLED_WRAPPED;
 	sa(data);
 	sb(data);
-	ft_printf("ss\n");
+	ft_printf("%s\n", __func__);
+	data->called_directly = CALLED_DIRECTLY;
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -66,8 +70,7 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof (t_data));
 	if (data == NULL)
 		print_error_exit("malloc fail\n", data);
-	data->a = init_stack(data);
-	data->b = init_stack(data);
+	*data = (t_data){init_stack(data), init_stack(data), CALLED_DIRECTLY};
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
@@ -80,8 +83,8 @@ int	main(int argc, char **argv)
 	print_stacks(*(data->a), *(data->b));
 	sb(data);	
 	print_stacks(*(data->a), *(data->b));
-/*	ss(data);	
+	ss(data);	
 	print_stacks(*(data->a), *(data->b));
-*/	free_data(data);
+	free_data(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:27:31 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 13:59:21 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "stdlib.h"
 
 #define INTERROR 0x8000000000000000L
+#define	CALLED_DIRECTLY	1
+#define	CALLED_WRAPPED	0
 
 typedef struct		s_node
 {
@@ -35,6 +37,7 @@ typedef struct		s_data
 {
 	struct s_stack	*a;
 	struct s_stack	*b;
+	int				called_directly;
 }					t_data;
 
 void			free_null(void *ptr);
