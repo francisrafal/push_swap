@@ -1,6 +1,9 @@
-checker_linux
+checker
 push_swap
 *.swp
 obj
 *.o
 *.a
+
+*.log
+push_swap_tester

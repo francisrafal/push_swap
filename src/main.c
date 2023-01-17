@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 16:29:26 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:31:47 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,28 +159,36 @@ void	sort(t_data *data)
 {
 	unsigned int	i;
 	unsigned int	j;
+	unsigned int	digit_checker;
+	t_node			*runner;
 
 	data->list_size = data->a->size;
-	while (data->a->size)
-		pb(data);	
 	i = 0;
 	while (i < 32)
 	{
-		j = 0;
-		while (j < data->list_size)
+		digit_checker = 0;
+		runner = data->a->head;
+		while (runner)
 		{
-			if (((data->b->head->data ^ 0x80000000) >> i) & 0x1)
-				pa(data);
-			else
-				rb(data);
-			j++;
+			digit_checker += ((runner->data ^ 0x80000000) >> i) & 0x1;
+			runner = runner->next;
 		}
-		while (data->a->size)
-			pb(data);
+		if (digit_checker != data->list_size && digit_checker != 0)
+		{
+			j = 0;
+			while (j < data->list_size)
+			{
+				if (((data->a->head->data ^ 0x80000000) >> i) & 0x1)
+					ra(data);
+				else
+					pb(data);
+				j++;
+			}
+			while (data->b->size)
+				pa(data);
+		}
 		i++;
 	}
-	while (data->b->size)
-		pa(data);
 }
 
 int	main(int argc, char **argv)
@@ -202,3 +210,12 @@ int	main(int argc, char **argv)
 	free_data(data);
 	return (0);
 }
+
+// Check if already sorted
+// Sort small
+// Simplify numbers
+
+// Bei 3: max 3 moves
+// Bei 5: max 12 moves
+// Bei 100: max 1100 moves / besser < 700
+// Bei 500: max 8500 moves / besser < 5500
