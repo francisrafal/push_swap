@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 15:27:53 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/17 16:29:26 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,34 @@ void	rrr(t_data *data)
 	data->called_directly = CALLED_DIRECTLY;
 }
 
+void	sort(t_data *data)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	data->list_size = data->a->size;
+	while (data->a->size)
+		pb(data);	
+	i = 0;
+	while (i < 32)
+	{
+		j = 0;
+		while (j < data->list_size)
+		{
+			if (((data->b->head->data ^ 0x80000000) >> i) & 0x1)
+				pa(data);
+			else
+				rb(data);
+			j++;
+		}
+		while (data->a->size)
+			pb(data);
+		i++;
+	}
+	while (data->b->size)
+		pa(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -164,33 +192,13 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof (t_data));
 	if (data == NULL)
 		print_error_exit("malloc fail\n", data);
-	*data = (t_data){init_stack(data), init_stack(data), CALLED_DIRECTLY};
+	*data = (t_data){init_stack(data), init_stack(data), CALLED_DIRECTLY, 0};
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
-	print_stacks(*(data->a), *(data->b));
-	pb(data);	
-	print_stacks(*(data->a), *(data->b));
-	pb(data);	
-	print_stacks(*(data->a), *(data->b));
-	sa(data);	
-	print_stacks(*(data->a), *(data->b));
-	sb(data);	
-	print_stacks(*(data->a), *(data->b));
-	ss(data);	
-	print_stacks(*(data->a), *(data->b));
-	ra(data);	
-	print_stacks(*(data->a), *(data->b));
-	rb(data);	
-	print_stacks(*(data->a), *(data->b));
-	rr(data);	
-	print_stacks(*(data->a), *(data->b));
-	rra(data);	
-	print_stacks(*(data->a), *(data->b));
-	rrb(data);	
-	print_stacks(*(data->a), *(data->b));
-	rrr(data);	
-	print_stacks(*(data->a), *(data->b));
+	//print_stacks(*(data->a), *(data->b));
+	sort(data);
+	//print_stacks(*(data->a), *(data->b));
 	free_data(data);
 	return (0);
 }
