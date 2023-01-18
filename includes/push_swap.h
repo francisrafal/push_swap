@@ -6,34 +6,32 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 16:35:33 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 17:49:35 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# include "libft.h"
+# include "unistd.h"
+# include "stdlib.h"
+# define INTERROR 0x8000000000000000L
+# define CALLED_DIRECTLY 1
+# define CALLED_WRAPPED 0
 
-#include "libft.h"
-#include "unistd.h"
-#include "stdlib.h"
-
-#define INTERROR 0x8000000000000000L
-#define	CALLED_DIRECTLY	1
-#define	CALLED_WRAPPED	0
-
-typedef struct		s_node
+typedef struct s_node
 {
 	int				data;
 	struct s_node	*next;
 }					t_node;
 
-typedef struct		s_stack
+typedef struct s_stack
 {
 	struct s_node	*head;
 	unsigned int	size;
 }					t_stack;
 
-typedef struct		s_data
+typedef struct s_data
 {
 	struct s_stack	*a;
 	struct s_stack	*b;
