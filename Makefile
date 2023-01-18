@@ -6,7 +6,7 @@
 #    By: frafal <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 10:02:44 by frafal            #+#    #+#              #
-#    Updated: 2023/01/18 11:14:09 by frafal           ###   ########.fr        #
+#    Updated: 2023/01/18 12:56:16 by frafal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ HEADERS			:= $(addprefix ${HEADDIR}, ${HEADLIST})
 SRCSDIR			:= ./src/
 SRCSLIST		:= main.c \
 					datavalidation.c \
-					stacks.c \
+					stack_operations.c \
+					fill_stack.c \
 					helpers.c \
 					pre_sort.c \
 					sort.c \

@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:28:25 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 12:54:21 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int				ft_issign(int c);
 unsigned int	arrlen(char **tmp);
 long			getvalidint(char *cur);
 void			free_str_arr(char **str_arr);
+void			fill_split(t_data *data, char **tmp, unsigned int len);
+void			fill_single(t_data *data, char **tmp, char *cur);
 void			fill_stack(t_data *data, int argc, char **argv);
 int				has_duplicates(t_data *data);
 t_data			*init_data(void);
