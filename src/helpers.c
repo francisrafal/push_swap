@@ -6,12 +6,12 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:24:32 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 10:01:45 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:22:49 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 void	print_stacks(t_stack a, t_stack b)
 {
 	int		left;
@@ -37,6 +37,7 @@ void	print_stacks(t_stack a, t_stack b)
 	ft_printf("_\t\t_\n");
 	ft_printf("a\t\tb\n\n");
 }
+*/
 
 void	free_str_arr(char **str_arr)
 {

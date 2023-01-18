@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:11:01 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:11:28 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:22:21 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	pb(t_data *data)
 void	sa(t_data *data)
 {
 	t_node	*tmp;
-	
+
 	if (data->a->size <= 1)
 		return ;
 	tmp = data->a->head;
@@ -41,7 +41,7 @@ void	sa(t_data *data)
 void	sb(t_data *data)
 {
 	t_node	*tmp;
-	
+
 	if (data->b->size <= 1)
 		return ;
 	tmp = data->b->head;

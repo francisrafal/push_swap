@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:11:49 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:12:41 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:21:26 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	pre_sort(t_data *data)
 		while (i < data->list_size - 1)
 		{
 			if (data->pre_sort_arr[i] > data->pre_sort_arr[i + 1])
-				swapped = swap(data->pre_sort_arr + i, data->pre_sort_arr + i + 1);
+				swapped = swap(data->pre_sort_arr + i,
+						data->pre_sort_arr + i + 1);
 			i++;
 		}
 	}

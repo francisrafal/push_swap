@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:26:34 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/16 16:26:54 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:19:06 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	arrlen(char **tmp)
 {
 	unsigned int	len;
 
-	len = 0;	
+	len = 0;
 	while (tmp[len])
 		len++;
 	return (len);
@@ -50,16 +50,13 @@ long	getvalidint(char *cur)
 			num = INTERROR;
 		free_null(tmp);
 	}	
-	else
-	{
-		if (ft_strncmp(a, cur + i, ft_strlen(a)))
-			num = INTERROR;
-	}
+	else if (ft_strncmp(a, cur + i, ft_strlen(a)))
+		num = INTERROR;
 	free_null(a);
 	return (num);
 }
 
-int	hasDuplicates(t_data *data)
+int	has_duplicates(t_data *data)
 {
 	t_node	*cur;
 	t_node	*runner;

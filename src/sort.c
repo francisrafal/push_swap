@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:12:54 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:13:16 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:31:46 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	sort(t_data *data)
 	unsigned int	i;
 	unsigned int	j;
 	t_node			*runner;
+	int				index;
 
 	i = 0;
 	while (!is_sorted(data))
@@ -42,7 +43,9 @@ void	sort(t_data *data)
 		j = 0;
 		while (j < data->list_size)
 		{
-			if ((index_of(data->pre_sort_arr, data->a->head->data, data->list_size) >> i) & 1)
+			index = index_of(data->pre_sort_arr,
+					data->a->head->data, data->list_size);
+			if ((index >> i) & 1)
 				ra(data);
 			else
 				pb(data);

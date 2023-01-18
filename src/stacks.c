@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:20:45 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 09:48:08 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 11:40:21 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	pop(t_stack *stack)
 {
-	int	n;
+	int		n;
 	t_node	*tmp;
 
 	tmp = stack->head;
@@ -34,7 +34,7 @@ void	free_stack(t_stack *stack)
 
 t_stack	*push(t_stack *stack, int n, t_data *data)
 {
-	t_node*	node;
+	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (node == NULL)
@@ -57,12 +57,41 @@ t_stack	*init_stack(t_data *data)
 	return (stack);
 }
 
+void	fill_split(t_data *data, char **tmp, unsigned int len)
+{
+	long	validint;
+
+	while (len > 0)
+	{
+		validint = getvalidint(tmp[len - 1]);
+		if (validint == (long)INTERROR)
+		{
+			free_str_arr(tmp);
+			print_error_exit("Error\n", data);
+		}
+		push(data->a, validint, data);
+		len--;
+	}
+}
+
+void	fill_single(t_data *data, char **tmp, char *cur)
+{
+	long	validint;
+
+	validint = getvalidint(cur);
+	if (validint == (long)INTERROR)
+	{
+		free_str_arr(tmp);
+		print_error_exit("Error\n", data);
+	}
+	push(data->a, validint, data);
+}
+
 void	fill_stack(t_data *data, int argc, char **argv)
 {
 	unsigned int	len;
 	char			*cur;
 	char			**tmp;
-	long			validint;
 
 	while (argc > 1)
 	{
@@ -70,31 +99,11 @@ void	fill_stack(t_data *data, int argc, char **argv)
 		if (!ft_isdigit(cur[0]) && !ft_issign(cur[0]))
 			print_error_exit("Error\n", data);
 		tmp = ft_split(cur, ' ');
-		len = arrlen(tmp);	
+		len = arrlen(tmp);
 		if (len > 1)
-		{
-			while (len > 0)
-			{
-				validint = getvalidint(tmp[len - 1]);
-				if (validint == (long)INTERROR)
-				{
-					free_str_arr(tmp);
-					print_error_exit("Error\n", data);
-				}
-				push(data->a, validint, data);
-				len--;
-			}
-		}
+			fill_split(data, tmp, len);
 		else
-		{
-			validint = getvalidint(cur);
-			if (validint == (long)INTERROR)
-			{
-				free_str_arr(tmp);
-				print_error_exit("Error\n", data);
-			}
-			push(data->a, validint, data);
-		}
+			fill_single(data, tmp, cur);
 		free_str_arr(tmp);
 		argc--;
 	}
