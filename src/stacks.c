@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:20:45 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 16:26:28 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 09:48:08 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	fill_stack(t_data *data, int argc, char **argv)
 		free_str_arr(tmp);
 		argc--;
 	}
+	data->list_size = data->a->size;
 }

@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 19:27:57 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 09:34:01 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_data
 	struct s_stack	*a;
 	struct s_stack	*b;
 	int				called_directly;
+	int				*pre_sort_arr;
 	unsigned int	list_size;
 }					t_data;
 

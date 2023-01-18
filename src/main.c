@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 19:39:06 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 09:51:30 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ void	sort(t_data *data)
 	unsigned int	digit_checker;
 	t_node			*runner;
 
-	data->list_size = data->a->size;
 	i = 0;
 	while (i < 32)
 	{
@@ -240,6 +239,29 @@ void	sort_keys(t_data *data)
 	}
 }
 
+void	fill_pre_sort_arr(t_data *data)
+{
+	t_node			*runner;
+	unsigned int	i;
+
+	data->pre_sort_arr = malloc(data->list_size * sizeof (int));
+	if (data->pre_sort_arr == NULL)
+		print_error_exit("malloc fail\n", data);
+	runner = data->a->head;
+	i = 0;
+	while (runner)
+	{
+		data->pre_sort_arr[i++] = runner->data;
+		runner = runner->next;
+	}
+	/*
+	i = 0;
+	while (i < data->list_size)
+		ft_printf("%d ", data->pre_sort_arr[i++]);
+	ft_printf("\n");
+	*/
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -249,17 +271,17 @@ int	main(int argc, char **argv)
 	data = malloc(sizeof (t_data));
 	if (data == NULL)
 		print_error_exit("malloc fail\n", data);
-	*data = (t_data){init_stack(data), init_stack(data), CALLED_DIRECTLY, 0};
+	*data = (t_data){init_stack(data), init_stack(data), CALLED_DIRECTLY, NULL, 0};
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
-	fill_keys(data);
-	print_keys(*(data->a), *(data->b));
-	sort_keys(data);
-	print_keys(*(data->a), *(data->b));
-	print_key_data(*(data->a), *(data->b));
-	sort(data);
-	print_keys(*(data->a), *(data->b));
+	fill_pre_sort_arr(data);
+//	print_keys(*(data->a), *(data->b));
+//	sort_keys(data);
+//	print_keys(*(data->a), *(data->b));
+//	print_key_data(*(data->a), *(data->b));
+//	sort(data);
+//	print_keys(*(data->a), *(data->b));
 //	print_stacks(*(data->a), *(data->b));
 //	print_stacks(*(data->a), *(data->b));
 //	print_stacks(*(data->a), *(data->b));
@@ -277,3 +299,4 @@ int	main(int argc, char **argv)
 // Bei 5: max 12 moves
 // Bei 100: max 1100 moves / besser < 700
 // Bei 500: max 8500 moves / besser < 5500
+// Norm check!!!!

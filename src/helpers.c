@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:24:32 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/17 19:28:32 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 09:37:32 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	free_data(t_data *data)
 {
 	free_stack(data->a);
 	free_stack(data->b);
+	free_null(data->pre_sort_arr);
 	free_null(data);
 }
 
