@@ -6,7 +6,7 @@
 #    By: frafal <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 10:02:44 by frafal            #+#    #+#              #
-#    Updated: 2023/01/18 12:56:16 by frafal           ###   ########.fr        #
+#    Updated: 2023/01/18 16:35:52 by frafal           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCSLIST		:= main.c \
 					helpers.c \
 					pre_sort.c \
 					sort.c \
+					sort_small.c \
 					push_swap.c \
 					rotate.c \
 					reverse_rotate.c

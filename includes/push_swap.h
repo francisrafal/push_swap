@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 14:11:06 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 16:35:33 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,11 @@ void			sort(t_data *data);
 int				swap(int *a, int *b);
 void			fill_pre_sort_arr(t_data *data);
 void			pre_sort(t_data *data);
+void			fill_arr(t_data *data, int *arr);
+void			sort_2(t_data *data);
+void			sort_3(t_data *data);
+void			sort_3_in_5(t_data *data, int *arr);
+void			sort_5(t_data *data);
+void			sort_big(t_data *data);
 
 #endif
