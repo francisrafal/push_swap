@@ -8,3 +8,4 @@ obj
 *.log
 push_swap_tester
 *.nfs*
+push_swap_visualizer
