@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 11:12:54 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:31:46 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 13:31:21 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,67 @@ int	is_sorted(t_data *data)
 	return (1);
 }
 
-void	sort(t_data *data)
+void	sort_3(t_data *data)
+{
+	int		arr[3];
+	t_node	*runner;
+	int		i;
+
+	while (!is_sorted(data))
+	{
+		runner = data->a->head;
+		i = 0;
+		while (runner)
+		{
+			arr[i] = index_of(data->pre_sort_arr, runner->data,
+					data->list_size);
+			runner = runner->next;
+			i++;
+		}
+		if (arr[0] == 1 && arr[1] == 2 && arr[2] == 0)
+			rra(data);
+		else if (arr[0] == 2 && arr[1] == 0 && arr[2] == 1)
+			ra(data);
+		else
+			sa(data);
+	}
+}
+
+void	sort_5(t_data *data)
+{
+	int		arr[5];
+	t_node	*runner;
+	int		i;
+
+	while (!is_sorted(data))
+	{
+		runner = data->a->head;
+		i = 0;
+		while (runner)
+		{
+			arr[i] = index_of(data->pre_sort_arr, runner->data,
+					data->list_size);
+			runner = runner->next;
+			i++;
+		}
+		if (arr[0] == 1 && arr[1] == 2 && arr[2] == 0)
+			rra(data);
+		else if (arr[0] == 2 && arr[1] == 0 && arr[2] == 1)
+			ra(data);
+		else
+			sa(data);
+	}
+}
+
+void	sort_big(t_data *data)
 {
 	unsigned int	i;
 	unsigned int	j;
-	t_node			*runner;
 	int				index;
 
 	i = 0;
 	while (!is_sorted(data))
 	{
-		runner = data->a->head;
 		j = 0;
 		while (j < data->list_size)
 		{
@@ -55,4 +105,12 @@ void	sort(t_data *data)
 			pa(data);
 		i++;
 	}
+}
+
+void	sort(t_data *data)
+{
+	if (data->list_size == 3)
+		sort_3(data);
+	else
+		sort_big(data);
 }
