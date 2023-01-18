@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 09:51:30 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 10:33:00 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,88 +155,70 @@ void	rrr(t_data *data)
 	data->called_directly = CALLED_DIRECTLY;
 }
 
+long	index_of(int *arr, int search_key, unsigned int size)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (arr[i] == search_key)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int	is_sorted(t_data *data)
+{
+	t_node			*runner;
+	unsigned int	i;
+
+	runner = data->a->head;
+	i = 0;
+	while (i < data->list_size)
+	{
+		if (data->pre_sort_arr[i] != runner->data)
+			return (0);
+		runner = runner->next;
+		i++;
+	}
+	return (1);
+}
+
 void	sort(t_data *data)
 {
 	unsigned int	i;
 	unsigned int	j;
-	unsigned int	digit_checker;
 	t_node			*runner;
 
 	i = 0;
-	while (i < 32)
+	while (!is_sorted(data))
 	{
-		digit_checker = 0;
 		runner = data->a->head;
-		while (runner)
+		j = 0;
+		while (j < data->list_size)
 		{
-			digit_checker += ((runner->data ^ 0x80000000) >> i) & 0x1;
-			runner = runner->next;
+			if ((index_of(data->pre_sort_arr, data->a->head->data, data->list_size) >> i) & 1)
+				ra(data);
+			else
+				pb(data);
+			j++;
 		}
-		if (digit_checker != data->list_size && digit_checker != 0)
-		{
-			j = 0;
-			while (j < data->list_size)
-			{
-				if (((data->a->head->data ^ 0x80000000) >> i) & 0x1)
-					ra(data);
-				else
-					pb(data);
-				j++;
-			}
-			while (data->b->size)
-				pa(data);
-		}
+		while (data->b->size)
+			pa(data);
 		i++;
 	}
 }
 
-void	fill_keys(t_data *data)
+int	swap(int *a, int *b)
 {
-	t_node			*runner;
-	unsigned int	i;
+	int	tmp;
 
-	i = 0;
-	runner = data->a->head;
-	while (runner)
-	{
-		runner->key = i;
-		runner->key_data = runner->data;
-		runner = runner->next;
-		i++;
-	}
-}
-
-int	swap_keys(t_node *a, t_node *b)
-{
-	unsigned int	tmp_key;
-	int				tmp_key_data;
-
-	tmp_key = a->key;
-	a->key = b->key;
-	b->key = tmp_key;
-	tmp_key_data = a->key_data;
-	a->key_data = b->key_data;
-	b->key_data = tmp_key_data;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 	return (1);
-}
-
-void	sort_keys(t_data *data)
-{
-	t_node	*runner;
-	int		swapped;
-
-	swapped = 1;
-	while (swapped)
-	{
-		runner = data->a->head;
-		swapped = 0;
-		while (runner->next)
-		{
-			if (runner->key_data > runner->next->key_data)
-				swapped = swap_keys(runner, runner->next);
-			runner = runner->next;
-		}
-	}
 }
 
 void	fill_pre_sort_arr(t_data *data)
@@ -254,12 +236,26 @@ void	fill_pre_sort_arr(t_data *data)
 		data->pre_sort_arr[i++] = runner->data;
 		runner = runner->next;
 	}
-	/*
-	i = 0;
-	while (i < data->list_size)
-		ft_printf("%d ", data->pre_sort_arr[i++]);
-	ft_printf("\n");
-	*/
+}
+
+void	pre_sort(t_data *data)
+{
+	int				swapped;
+	unsigned int	i;
+
+	fill_pre_sort_arr(data);
+	swapped = 1;
+	while (swapped)
+	{
+		i = 0;
+		swapped = 0;
+		while (i < data->list_size - 1)
+		{
+			if (data->pre_sort_arr[i] > data->pre_sort_arr[i + 1])
+				swapped = swap(data->pre_sort_arr + i, data->pre_sort_arr + i + 1);
+			i++;
+		}
+	}
 }
 
 int	main(int argc, char **argv)
@@ -275,28 +271,16 @@ int	main(int argc, char **argv)
 	fill_stack(data, argc, argv);
 	if (hasDuplicates(data))
 		print_error_exit("Error\n", data);
-	fill_pre_sort_arr(data);
-//	print_keys(*(data->a), *(data->b));
-//	sort_keys(data);
-//	print_keys(*(data->a), *(data->b));
-//	print_key_data(*(data->a), *(data->b));
-//	sort(data);
-//	print_keys(*(data->a), *(data->b));
-//	print_stacks(*(data->a), *(data->b));
-//	print_stacks(*(data->a), *(data->b));
-//	print_stacks(*(data->a), *(data->b));
+	pre_sort(data);
+	sort(data);
+	//print_stacks(*(data->a), *(data->b));
 	free_data(data);
 	return (0);
 }
 
-// IMPORTANT: REPAIR push and pop to also return key and key_data
-
-// Check if already sorted
 // Sort small
-// Simplify numbers
+// Sort BIG
 // Bei 2: max 1 move
 // Bei 3: max 3 moves
 // Bei 5: max 12 moves
-// Bei 100: max 1100 moves / besser < 700
-// Bei 500: max 8500 moves / besser < 5500
 // Norm check!!!!
