@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:47 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 12:54:21 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/18 14:11:06 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			rra(t_data *data);
 void			rrb(t_data *data);
 void			rrr(t_data *data);
 long			index_of(int *arr, int search_key, unsigned int size);
-int				is_sorted(t_data *data);
+int				is_sorted(t_data *data, unsigned int size);
 void			sort(t_data *data);
 int				swap(int *a, int *b);
 void			fill_pre_sort_arr(t_data *data);
