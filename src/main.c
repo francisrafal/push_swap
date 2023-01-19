@@ -6,7 +6,7 @@
 /*   By: frafal <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 17:16:12 by frafal            #+#    #+#             */
-/*   Updated: 2023/01/18 11:29:42 by frafal           ###   ########.fr       */
+/*   Updated: 2023/01/19 10:00:19 by frafal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,3 @@ int	main(int argc, char **argv)
 	free_data(data);
 	return (0);
 }
-
-// Sort small
-// Sort BIG
-// Bei 2: max 1 move
-// Bei 3: max 3 moves
-// Bei 5: max 12 moves
-// Norm check!!!!
